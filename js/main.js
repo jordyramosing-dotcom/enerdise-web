@@ -141,14 +141,27 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeLightbox();
 });
 
-// Formulario: abre el correo con el mensaje prellenado
-document.getElementById('contactForm').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const nombre = form.nombre.value.trim();
-  const telefono = form.telefono.value.trim();
-  const mensaje = form.mensaje.value.trim();
+// Formulario: WhatsApp (principal) o correo (alternativa), con el mensaje prellenado
+const contactForm = document.getElementById('contactForm');
 
+function datosFormulario() {
+  return {
+    nombre: contactForm.nombre.value.trim(),
+    telefono: contactForm.telefono.value.trim(),
+    mensaje: contactForm.mensaje.value.trim(),
+  };
+}
+
+contactForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const { nombre, telefono, mensaje } = datosFormulario();
+  const texto = `Hola ENERDISE, soy ${nombre}.${telefono ? ` Mi teléfono: ${telefono}.` : ''}\n\n${mensaje}`;
+  window.open(`https://wa.me/50496431605?text=${encodeURIComponent(texto)}`, '_blank', 'noopener');
+});
+
+document.getElementById('btnCorreo').addEventListener('click', () => {
+  if (!contactForm.reportValidity()) return;
+  const { nombre, telefono, mensaje } = datosFormulario();
   const asunto = encodeURIComponent(`Solicitud de cotización — ${nombre}`);
   const cuerpo = encodeURIComponent(
     `Nombre: ${nombre}\nTeléfono: ${telefono || 'No indicado'}\n\nMensaje:\n${mensaje}`

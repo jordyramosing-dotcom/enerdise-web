@@ -501,6 +501,9 @@ a.contact-card:hover { border-color: rgba(247, 181, 0, 0.55); transform: transla
   border-color: var(--amarillo);
   background: var(--blanco);
 }
+.form-buttons { display: flex; gap: 12px; }
+.form-buttons .btn { flex: 1; padding-left: 14px; padding-right: 14px; white-space: nowrap; }
+
 .form-note { font-size: 0.8rem; color: var(--texto-suave) !important; text-align: center; }
 
 /* ---------- Redes sociales ---------- */
@@ -680,6 +683,7 @@ a.contact-card:hover { border-color: rgba(247, 181, 0, 0.55); transform: transla
   .services-grid { grid-template-columns: 1fr; }
   .valores-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .form-buttons { flex-direction: column; }
   .footer-grid { grid-template-columns: 1fr; }
   .brand-logo { height: 40px; }
   .hero { min-height: 86vh; }
