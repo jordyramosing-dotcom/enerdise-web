@@ -169,5 +169,18 @@ document.getElementById('btnCorreo').addEventListener('click', () => {
   window.location.href = `mailto:enerdiseingenieria@outlook.com?subject=${asunto}&body=${cuerpo}`;
 });
 
+// Video: carga el reproductor de YouTube solo al hacer clic (página liviana)
+const videoPlay = document.getElementById('videoPlay');
+if (videoPlay) {
+  videoPlay.addEventListener('click', () => {
+    const iframe = document.createElement('iframe');
+    iframe.src = videoPlay.dataset.src;
+    iframe.title = 'Video promocional de ENERDISE';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    videoPlay.replaceWith(iframe);
+  });
+}
+
 // Año dinámico en el pie de página
 document.getElementById('year').textContent = new Date().getFullYear();
